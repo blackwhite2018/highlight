@@ -5,6 +5,7 @@ import New from './New/New';
 import Popular from './Popular/Popular';
 import Video from './Video/Video';
 import Article from './Article/Article';
+import withWrapper from '../withWrapper/withWrapper';
 import './css/index.css';
 
 const List = ({ list }) => {
@@ -26,13 +27,9 @@ const List = ({ list }) => {
                 break;
         }
 
-        if (item.views < 1000) {
-            return <New key={ shortid.generate() }>{ itemType }</New>;
-        }
+        const Wrapper = withWrapper(item);
 
-        if (item.views >= 1000) {
-            return  <Popular key={ shortid.generate() }>{ itemType }</Popular>;
-        }
+        return <Wrapper>{ itemType }</Wrapper>
     });
 };
 
